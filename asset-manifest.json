@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/wassim-darwish/static/css/main.f855e6bc.css",
+    "main.js": "/wassim-darwish/static/js/main.8d6f0b15.js",
+    "static/js/453.ed3810f9.chunk.js": "/wassim-darwish/static/js/453.ed3810f9.chunk.js",
+    "static/media/logo.svg": "/wassim-darwish/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/wassim-darwish/index.html",
+    "main.f855e6bc.css.map": "/wassim-darwish/static/css/main.f855e6bc.css.map",
+    "main.8d6f0b15.js.map": "/wassim-darwish/static/js/main.8d6f0b15.js.map",
+    "453.ed3810f9.chunk.js.map": "/wassim-darwish/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.8d6f0b15.js"
+  ]
+}
