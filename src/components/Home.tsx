@@ -1,5 +1,7 @@
 import { Grid } from "@mui/material";
 import About from "./About";
+import Navbar from "./Navbar";
+import Hero from "./Hero";
 
 const Home = () => {
   return (
@@ -10,15 +12,16 @@ const Home = () => {
       justifyContent="center"
       sx={{ overflowX: "hidden" }}
     >
-      {/* <Grid container item>
-        <TopBar />
-      </Grid> */}
-      {/* <Grid item>
-        <Hero />
-      </Grid> */}
       <Grid item>
+        <Navbar />
+      </Grid>
+      <Grid item key="#about">
         <About />
       </Grid>
+      <Grid item key="#hero">
+        <Hero />
+      </Grid>
+
       {/* <Grid container item>
         <Footer />
       </Grid> */}

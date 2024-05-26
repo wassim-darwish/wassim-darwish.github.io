@@ -4,11 +4,13 @@
   "private": true,
   "homepage": "https://wassim-darwish.github.io",
   "dependencies": {
+    "@emailjs/browser": "^4.3.3",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@fontsource/outfit": "^5.0.13",
     "@fontsource/unbounded": "^5.0.20",
     "@motionone/utils": "^10.17.0",
+    "@mui/icons-material": "^5.15.18",
     "@mui/material": "^5.15.18",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -22,6 +24,7 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
+    "styled-components": "^6.1.11",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
