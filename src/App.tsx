@@ -1,3 +1,6 @@
+import "@fontsource/unbounded";
+import "@fontsource/outfit";
+
 import React, { Suspense } from "react";
 import "./App.css";
 import { CssBaseline, ThemeProvider } from "@mui/material";

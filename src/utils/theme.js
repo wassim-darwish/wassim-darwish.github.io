@@ -126,7 +126,7 @@ theme = createTheme(theme, {
         root: {
           background: "transparent",
           "&:hover": {
-            backgroundImage: "linear-gradient(to left, #FF8BFF, #1E9DFF)",
+            backgroundImage: "linear-gradient(to left, #642B73, #C6426E)",
             backgroundSize: "100%",
             backgroundRepeat: "repeat",
             backgroundClip: "text",
@@ -140,7 +140,7 @@ theme = createTheme(theme, {
       styleOverrides: {
         contained: {
           borderRadius: "0.75rem",
-          background: "linear-gradient(242deg, #FF8BFF 16.55%, #1E9DFF 93.07%)",
+          background: "linear-gradient(242deg, #642B73 16.55%, #C6426E 93.07%)",
           color: theme.palette.common.black,
           fontFamily: "Unbounded",
           fontSize: "0.9375rem",
@@ -174,14 +174,14 @@ theme = createTheme(theme, {
     MuiCheckbox: {
       styleOverrides: {
         root: {
-          background: "linear-gradient(224deg, #FF8BFF 8.64%, #1E9DFF 105.77%)",
+          background: "linear-gradient(224deg, #642B73 8.64%, #C6426E 105.77%)",
           borderRadius: "0.4375rem",
           padding: 0,
           color: "transparent",
           margin: 0,
           "&.Mui-checked": {
             background:
-              "linear-gradient(224deg, #FF8BFF 8.64%, #1E9DFF 105.77%)",
+              "linear-gradient(224deg, #642B73 8.64%, #C6426E 105.77%)",
           },
         },
       },
