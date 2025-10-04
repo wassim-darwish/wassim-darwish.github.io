@@ -1,0 +1,12 @@
+export { default as FreelancerIcon } from "./freelancer.png";
+export { default as WealthfaceIcon } from "./wealthface.png";
+export { default as NovelGsLogo } from "./novel.png";
+export { default as SpicyfiIcon } from "./spicyfi.png";
+export { default as KaskadeIcon } from "./kaskade_white.png";
+export { default as ColorSharp } from "./color-sharp.png";
+export { default as ColorSharp2 } from "./color-sharp2.png";
+export { default as ProjectImg1 } from "./project-img1.png";
+export { default as ProjectImg2 } from "./project-img2.png";
+export { default as ProjectImg3 } from "./project-img3.png";
+export { default as footerBackground } from "./footerBackground.svg";
+export { default as HeaderImg } from "./header-img.svg";

@@ -7,6 +7,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import { theme } from "./utils/theme";
 import Home from "./components/Home";
+import { PageContainer } from "components/common/PageContainer";
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
       <CssBaseline />
       <Suspense fallback={<div />}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<PageContainer />}>
+            <Route index element={<Home />} />
+          </Route>
         </Routes>
       </Suspense>
     </ThemeProvider>
