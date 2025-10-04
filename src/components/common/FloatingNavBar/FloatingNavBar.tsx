@@ -1,6 +1,5 @@
 import { Grid, Link, Typography } from "@mui/material";
 import { views } from "components/Navbar";
-import React from "react";
 
 function FloatingNavBar() {
   return (
