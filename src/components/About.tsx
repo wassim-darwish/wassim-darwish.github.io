@@ -23,6 +23,7 @@ const About = () => {
         mt: -22,
       }}
       ref={ref}
+      id="about"
     >
       <Grid container gap={8} justifyContent="center">
         <Grid item mb={4}>
