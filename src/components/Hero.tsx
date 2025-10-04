@@ -3,12 +3,12 @@ import {
   Typography,
   Box,
   IconButton,
-  Slide,
   useMediaQuery,
+  Zoom,
 } from "@mui/material";
 import heroWaves from "../assets/wave.png";
-import { useEffect, useState } from "react";
-import { MyImage } from "images";
+import { useRef, useState } from "react";
+import { profileImage } from "images";
 import LinkedinIcon from "./icons/LinkedinIcon";
 import LinkedinIconGradient from "./icons/LinkedinGradientIcon";
 import GmailIcon from "./icons/GmailIcon";
@@ -19,8 +19,10 @@ import GithubIcon from "./icons/GithubIcon";
 import GithubIconGradient from "./icons/GithubIconGradient";
 import ScrollIcon from "./icons/ScrollIcon";
 import { theme } from "utils/theme";
+import useOnScreen from "hooks/useOnScreen";
+import { MyCV } from "./constants/cv";
 
-const social = [
+export const social = [
   {
     name: "Gmail",
     href: "mailto:wassimdarwish89@gmail.com?",
@@ -51,17 +53,14 @@ const social = [
 
 const Hero = () => {
   const [hoverOver, setHoverOver] = useState("");
-  const [transition, setTransition] = useState(false);
+
+  const ref = useRef<HTMLDivElement>(null);
+  const isVisible = useOnScreen(ref);
 
   const mobileSize = useMediaQuery(theme.breakpoints.down("md"));
-  useEffect(() => {
-    setTimeout(() => {
-      setTransition(true);
-    }, 1500);
-  }, []);
 
   return (
-    <Box sx={{ minHeight: "100vh" }}>
+    <Box sx={{ minHeight: "100vh", mt: 20 }} ref={ref} id="#about">
       <Grid container justifyContent="center">
         <Grid item>
           <ScrollIcon
@@ -83,13 +82,8 @@ const Hero = () => {
           />
         </Grid>
       </Grid>
-      <Slide
-        direction="up"
-        in={transition}
-        mountOnEnter
-        unmountOnExit
-        timeout={1000}
-      >
+
+      <Zoom in={isVisible} mountOnEnter timeout={1200}>
         <Grid
           container
           flexDirection="column"
@@ -104,7 +98,7 @@ const Hero = () => {
               textAlign="center"
               fontSize={{ xs: "8vw", md: "6vw" }}
             >
-              Wassim Darwish
+              {MyCV.name}
             </Typography>
           </Grid>
           <Grid
@@ -126,12 +120,7 @@ const Hero = () => {
               fontWeight={300}
               textAlign="center"
             >
-              I am a dedicated Full Stack Developer with a passion for crafting
-              high-quality web and mobile applications. With expertise in both
-              frontend and backend development, I thrive on delivering seamless
-              and efficient user experiences. My skill set encompasses a range
-              of modern technologies, including React, React Native, Node.js,
-              and Express.js, among others.
+              {MyCV.summary}
             </Typography>
           </Grid>
           <Grid item order={5} mt={{ xs: "1.25rem", md: "2.5rem" }}>
@@ -147,7 +136,7 @@ const Hero = () => {
                 // position: "absolute",
                 boxShadow: "1px 3px 3px #333",
               }}
-              src={MyImage}
+              src={profileImage}
             />
           </Grid>
           <Grid
@@ -190,7 +179,8 @@ const Hero = () => {
             />
           </Grid>
         </Grid>
-      </Slide>
+      </Zoom>
+      {/* </Slide> */}
     </Box>
   );
 };

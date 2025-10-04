@@ -3,7 +3,6 @@ import {
   IconButton,
   Stack,
   Grid,
-  Box,
   Link,
   Typography,
 } from "@mui/material";
@@ -11,25 +10,7 @@ import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { DownloadPDF } from "./common/DownloadPDF";
-
-const views = [
-  {
-    name: "About",
-    ref: "/",
-  },
-  {
-    name: "Skills",
-    ref: "/",
-  },
-  {
-    name: "Projects",
-    ref: "/",
-  },
-  {
-    name: "Contact",
-    ref: "/",
-  },
-];
+import { views } from "./Navbar";
 
 const MobileMenu = () => {
   const [open, setOpen] = useState(false);
@@ -43,24 +24,27 @@ const MobileMenu = () => {
   };
 
   return (
-    <Box>
-      <Stack
-        flexDirection="row"
-        justifyContent="space-between"
-        alignItems="center"
-        px="5%"
-      >
-        <Typography variant="h5" color="white">
-          {"</Wassim>"}
-        </Typography>
-        <IconButton
-          aria-label="open drawer"
-          edge="end"
-          onClick={handleDrawerOpen}
+    <Grid container>
+      <Grid item xs={12}>
+        <Stack
+          width="100%"
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+          px="5%"
         >
-          <MenuIcon sx={{ color: "common.white" }} />
-        </IconButton>
-      </Stack>
+          <Typography variant="h5" color="white">
+            {"</Wassim>"}
+          </Typography>
+          <IconButton
+            aria-label="open drawer"
+            edge="end"
+            onClick={handleDrawerOpen}
+          >
+            <MenuIcon sx={{ color: "common.white" }} />
+          </IconButton>
+        </Stack>
+      </Grid>
       <Drawer variant="persistent" anchor="right" open={open}>
         <Grid
           container
@@ -91,7 +75,7 @@ const MobileMenu = () => {
           <Grid container item height="fit-content" rowGap="1.5rem">
             {views.map((item) => (
               <Grid item xs={12} key={item.name}>
-                <Link fontSize="1.25rem" href={item.ref}>
+                <Link fontSize="1.25rem" href={item.to}>
                   {item.name}
                 </Link>
               </Grid>
@@ -115,7 +99,7 @@ const MobileMenu = () => {
           </Grid>
         </Grid>
       </Drawer>
-    </Box>
+    </Grid>
   );
 };
 

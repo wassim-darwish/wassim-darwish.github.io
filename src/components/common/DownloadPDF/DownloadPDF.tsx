@@ -4,7 +4,7 @@ import React from "react";
 function DownloadPDF() {
   return (
     <Button
-      href={require("./WassimDarwishCv.pdf")}
+      href={require("./WassimDarwish _CV.pdf")}
       type="button"
       variant="contained"
       target="_blank"

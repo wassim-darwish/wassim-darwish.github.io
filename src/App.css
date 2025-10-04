@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.background-image-left {
+  top: 28%;
+  /* position: absolute; */
+  bottom: 0;
+  width: 40%;
+  z-index: -4;
+}
