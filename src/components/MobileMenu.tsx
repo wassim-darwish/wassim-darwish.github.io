@@ -1,9 +1,9 @@
 import {
+  Box,
   Drawer,
   IconButton,
-  Stack,
-  Grid,
   Link,
+  Stack,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
@@ -11,95 +11,119 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { DownloadPDF } from "./common/DownloadPDF";
 import { views } from "./Navbar";
+import { social } from "./Hero";
 
 const MobileMenu = () => {
   const [open, setOpen] = useState(false);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <Stack
-          width="100%"
-          flexDirection="row"
-          justifyContent="space-between"
-          alignItems="center"
-          px="5%"
-        >
-          <Typography variant="h5" color="white">
+    <Box width="100%">
+      <Stack
+        direction="row"
+        width="100%"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Link href="#banner">
+          <Typography variant="h5" color="common.white" fontFamily="Unbounded">
             {"</Wassim>"}
           </Typography>
-          <IconButton
-            aria-label="open drawer"
-            edge="end"
-            onClick={handleDrawerOpen}
-          >
-            <MenuIcon sx={{ color: "common.white" }} />
-          </IconButton>
-        </Stack>
-      </Grid>
-      <Drawer variant="persistent" anchor="right" open={open}>
-        <Grid
-          container
-          flexDirection="column"
-          justifyContent="space-between"
-          p="7% 5% 3% 5%"
-          width="100vw"
-          height="100vh"
+        </Link>
+        <IconButton
+          aria-label="Open navigation menu"
+          aria-expanded={open}
+          edge="end"
+          onClick={() => setOpen(true)}
         >
-          <Grid
-            container
-            item
-            justifyContent="center"
+          <MenuIcon sx={{ color: "common.white" }} />
+        </IconButton>
+      </Stack>
+
+      <Drawer
+        anchor="right"
+        open={open}
+        onClose={() => setOpen(false)}
+        transitionDuration={300}
+        PaperProps={{
+          sx: {
+            width: "100%",
+            maxWidth: "26rem",
+            backgroundColor: "rgba(18, 15, 23, 0.98)",
+            backgroundImage: "none",
+            borderLeft: "1px solid rgba(148, 137, 167, 0.14)",
+          },
+        }}
+      >
+        <Stack height="100%" justifyContent="space-between" p={3}>
+          <Stack
+            direction="row"
+            justifyContent="space-between"
             alignItems="center"
-            height="fit-content"
           >
-            <Grid item xs={6}>
-              <Typography variant="h4" color="white">
-                {"</Wassim>"}
-              </Typography>
-            </Grid>
-            <Grid item xs={6} textAlign="right">
-              <IconButton onClick={handleDrawerClose} sx={{ padding: 0 }}>
-                <CloseIcon />
-              </IconButton>
-            </Grid>
-          </Grid>
-          <Grid container item height="fit-content" rowGap="1.5rem">
-            {views.map((item) => (
-              <Grid item xs={12} key={item.name}>
-                <Link fontSize="1.25rem" href={item.to}>
-                  {item.name}
-                </Link>
-              </Grid>
-            ))}
-          </Grid>
-          <Grid container item height="fit-content" rowGap="1.5rem">
-            <Grid item xs={12} textAlign="center">
-              <DownloadPDF />
-            </Grid>
-            <Grid item xs={12} textAlign="center">
-              <Typography
-                variant="subtitle2"
+            <Typography variant="h5" color="common.white">
+              {"</Wassim>"}
+            </Typography>
+            <IconButton
+              aria-label="Close navigation menu"
+              onClick={() => setOpen(false)}
+            >
+              <CloseIcon sx={{ color: "common.white" }} />
+            </IconButton>
+          </Stack>
+
+          <Stack component="nav" spacing={2.5} py={4}>
+            {views.map((item, index) => (
+              <Link
+                key={item.name}
+                href={item.to}
+                // Closing on navigate is what makes the anchor scroll visible.
+                onClick={() => setOpen(false)}
                 sx={{
-                  opacity: 0.5,
-                  fontFamily: "Outfit",
+                  fontSize: "1.375rem",
+                  color: "secondary.main",
+                  opacity: 0,
+                  animation: `slideIn 400ms ease forwards ${index * 60}ms`,
+                  "@keyframes slideIn": {
+                    from: { opacity: 0, transform: "translateX(1.5rem)" },
+                    to: { opacity: 1, transform: "translateX(0)" },
+                  },
+                  "@media (prefers-reduced-motion: reduce)": {
+                    opacity: 1,
+                    animation: "none",
+                  },
+                  "&:hover": { color: "common.white" },
                 }}
               >
-                ©Wassim Darwish {new Date().getFullYear()} Copyright
-              </Typography>
-            </Grid>
-          </Grid>
-        </Grid>
+                {item.name}
+              </Link>
+            ))}
+          </Stack>
+
+          <Stack spacing={2.5} alignItems="center">
+            <Stack direction="row" spacing={1}>
+              {social.map((item) => (
+                <IconButton
+                  key={item.name}
+                  aria-label={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.whiteIcon}
+                </IconButton>
+              ))}
+            </Stack>
+            <DownloadPDF />
+            <Typography
+              variant="subtitle2"
+              sx={{ opacity: 0.5, fontFamily: "Outfit" }}
+            >
+              © Wassim Darwish {new Date().getFullYear()}
+            </Typography>
+          </Stack>
+        </Stack>
       </Drawer>
-    </Grid>
+    </Box>
   );
 };
 

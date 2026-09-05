@@ -1,55 +1,42 @@
-import { Box, Grid, Typography, Chip, Zoom } from "@mui/material";
-import { useRef } from "react";
-import useOnScreen from "hooks/useOnScreen";
+import { Box, Card, CardContent, Chip } from "@mui/material";
 import { MyCV } from "components/constants/cv";
+import { GradientText } from "components/GradientText";
 
+/** Soft-skill chips, rendered alongside Languages inside the Education section. */
 const SoftSkillsSection = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(ref);
-
   return (
-    <Box ref={ref} id="soft-skills" sx={{ mt: 10, mb: 8 }}>
-      <Zoom in={isVisible} timeout={800}>
-        <Box textAlign="center">
-          <Typography
-            variant="h2"
-            color="primary"
-            fontWeight={600}
-            mb={4}
-            fontSize={{ xs: "8vw", md: "3vw" }}
-          >
-            Soft Skills
-          </Typography>
-
-          <Grid
-            container
-            spacing={2}
-            justifyContent="center"
-            px={{ xs: 2, md: 6 }}
-          >
-            {MyCV.soft_skills.map((skill, index) => (
-              <Grid item key={index}>
-                <Chip
-                  label={skill}
-                  color="secondary"
-                  variant="outlined"
-                  sx={{
-                    fontSize: { xs: "0.9rem", md: "1rem" },
-                    borderRadius: "20px",
-                    padding: "4px 8px",
-                    transition: "all 0.3s ease",
-                    "&:hover": {
-                      backgroundColor: "secondary.main",
-                      color: "#fff",
-                    },
-                  }}
-                />
-              </Grid>
-            ))}
-          </Grid>
+    <Card elevation={0} sx={{ height: "100%" }}>
+      <CardContent sx={{ p: { xs: 2.5, md: 3 } }}>
+        <GradientText
+          text="Soft Skills"
+          component="h3"
+          fontSize={{ xs: "1.125rem", md: "1.25rem" }}
+          fontWeight={600}
+        />
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mt: 2.5 }}>
+          {MyCV.soft_skills.map((skill) => (
+            <Chip
+              key={skill}
+              label={skill}
+              sx={{
+                borderRadius: "999px",
+                px: 0.5,
+                fontSize: { xs: "0.75rem", md: "0.8125rem" },
+                color: "common.white",
+                backgroundColor: "rgba(148, 137, 167, 0.1)",
+                border: "1px solid rgba(148, 137, 167, 0.2)",
+                transition: "all 250ms ease",
+                "&:hover": {
+                  transform: "translateY(-2px)",
+                  borderColor: "rgba(198, 66, 110, 0.6)",
+                  backgroundColor: "rgba(198, 66, 110, 0.16)",
+                },
+              }}
+            />
+          ))}
         </Box>
-      </Zoom>
-    </Box>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -1,5 +1,10 @@
 import { Typography, TypographyProps } from "@mui/material";
 
+export type GradientTextProps = {
+  text: string;
+  bgGradient?: string;
+} & TypographyProps;
+
 export const GradientText = ({
   fontSize = "3.125rem",
   fontWeight = "500",
@@ -7,7 +12,9 @@ export const GradientText = ({
   text = "",
   lineHeight = "inherit",
   bgGradient = "linear-gradient(to left, #642B73, #C6426E)",
-}: { text: string; bgGradient?: string } & TypographyProps) => {
+  sx,
+  ...rest
+}: GradientTextProps) => {
   return (
     <Typography
       fontSize={fontSize}
@@ -21,9 +28,17 @@ export const GradientText = ({
         backgroundClip: "text",
         WebkitBackgroundClip: "text",
         WebkitTextFillColor: "transparent",
+        // Keep gradient text selectable/legible if background-clip is unsupported.
+        "@supports not (background-clip: text)": {
+          WebkitTextFillColor: "currentcolor",
+        },
+        ...sx,
       }}
+      {...rest}
     >
       {text}
     </Typography>
   );
 };
+
+export default GradientText;

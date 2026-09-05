@@ -7,11 +7,24 @@ type TInput = TextFieldProps & {
 
 export default function Input({ fieldLabel, ...props }: TInput) {
   return (
-    <Box>
-      <Typography variant="subtitle2" mb={1}>
+    <Box width="100%">
+      <Typography
+        variant="subtitle2"
+        component="label"
+        htmlFor={props.id}
+        color="secondary.main"
+        sx={{ display: "block", mb: 1, fontFamily: "Outfit" }}
+      >
         {fieldLabel}
       </Typography>
-      <TextField fullWidth hiddenLabel required {...props} variant="outlined" />
+      <TextField
+        fullWidth
+        hiddenLabel
+        required
+        size="medium"
+        {...props}
+        variant="outlined"
+      />
     </Box>
   );
 }

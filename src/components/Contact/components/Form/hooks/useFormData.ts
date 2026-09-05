@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { isEmail } from "../utils";
 
@@ -39,15 +39,18 @@ export const useFormData = () => {
     setValues({ ...values, [name]: value });
   };
 
-  const onSubmitHandler = (e: any) => {
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // Capture the form node before awaiting: currentTarget is cleared once the
+    // event handler returns.
+    const form = e.currentTarget;
     setSendingMessage(true);
     emailjs
       .sendForm(
-        "service_q66jhls",
-        "template_fbd4rtj",
-        e.currentTarget,
-        "MEoTKGhnVlrkm0Sc1"
+        "service_ryx6fv9",
+        "template_8i94mhr",
+        form,
+        "MEoTKGhnVlrkm0Sc1",
       )
       .then(
         () => {
@@ -63,16 +66,13 @@ export const useFormData = () => {
         () => {
           setMessageSuccess(false);
           setOpenSnackbar(true);
-        }
+          // Without this the button stays stuck in its loading state.
+          setSendingMessage(false);
+        },
       );
   };
 
   const handleClose = () => {
-    setValues({
-      name: "",
-      email: "",
-      message: "",
-    });
     setOpenSnackbar(false);
     setSendingMessage(false);
   };
@@ -86,7 +86,7 @@ export const useFormData = () => {
       !values.email ||
       !values.message ||
       !values.name,
-    [errors, sendingMessage, values]
+    [errors, sendingMessage, values],
   );
 
   return {
