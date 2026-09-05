@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.e576bc75.css",
-    "main.js": "/static/js/main.e52ac491.js",
+    "main.js": "/static/js/main.809b0b01.js",
     "static/js/453.4a66c045.chunk.js": "/static/js/453.4a66c045.chunk.js",
     "static/media/wave.png": "/static/media/wave.17c83469ba48663be88a.png",
     "static/media/project-img5.jpeg": "/static/media/project-img5.0065780d3b19ee475869.jpeg",
@@ -12,8 +12,8 @@
     "static/media/project-img6.jpeg": "/static/media/project-img6.ba322439946ea5da461c.jpeg",
     "static/media/project-img-8.jpeg": "/static/media/project-img-8.f2edebc23a36acc594d5.jpeg",
     "static/media/project-img9.jpeg": "/static/media/project-img9.46e37c3700d67d2f8796.jpeg",
-    "static/media/WassimDarwish_CV.pdf": "/static/media/WassimDarwish_CV.8a302404e13cf4977dc7.pdf",
     "static/media/myImg.jpeg": "/static/media/myImg.e45b6c36e4001c8ff666.jpeg",
+    "static/media/Wassim_Darwish_CV.pdf": "/static/media/Wassim_Darwish_CV.9ca16f6cc0173e1dd6e7.pdf",
     "static/media/header-img.svg": "/static/media/header-img.84bf93eb20488a753440bf83d27db7bb.svg",
     "static/media/kaskade_white.png": "/static/media/kaskade_white.0293a70380ddc8c7e131.png",
     "static/media/my-image.jpeg": "/static/media/my-image.debfd56d4dfd3d02e4f3.jpeg",
@@ -38,11 +38,11 @@
     "static/media/unbounded-cyrillic-ext-400-normal.woff2": "/static/media/unbounded-cyrillic-ext-400-normal.485b39eab1a3f06aa868.woff2",
     "static/media/footerBackground.svg": "/static/media/footerBackground.fe66376c85df29d1ec75809f76fb0e40.svg",
     "main.e576bc75.css.map": "/static/css/main.e576bc75.css.map",
-    "main.e52ac491.js.map": "/static/js/main.e52ac491.js.map",
+    "main.809b0b01.js.map": "/static/js/main.809b0b01.js.map",
     "453.4a66c045.chunk.js.map": "/static/js/453.4a66c045.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e576bc75.css",
-    "static/js/main.e52ac491.js"
+    "static/js/main.809b0b01.js"
   ]
 }
