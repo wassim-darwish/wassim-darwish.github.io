@@ -1,32 +1,60 @@
-import { Grid } from "@mui/material";
+import { Box, Container, Divider, Link, Stack } from "@mui/material";
 import { CopyRights, Logo, SocialLinks } from "./components";
 import { footerBackground } from "assets";
+import { views } from "components/Navbar";
 
 function Footer() {
   return (
-    <Grid
-      py={7}
-      width="100wh"
-      container
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
+    <Box
+      component="footer"
       sx={{
+        width: "100%",
+        py: { xs: 6, md: 8 },
+        mt: { xs: 4, md: 8 },
+        borderTop: "1px solid rgba(148, 137, 167, 0.14)",
         background: `transparent url(${footerBackground}) no-repeat center`,
         backgroundSize: "cover",
       }}
-      rowGap={4}
     >
-      <Grid item>
-        <Logo />
-      </Grid>
-      <Grid item xs={12}>
-        <SocialLinks />
-      </Grid>
-      <Grid item xs={12}>
-        <CopyRights />
-      </Grid>
-    </Grid>
+      <Container maxWidth="lg" sx={{ px: { xs: 2.5, sm: 4, md: 5 } }}>
+        <Stack spacing={{ xs: 3.5, md: 4 }} alignItems="center">
+          <Logo />
+
+          <Stack
+            direction="row"
+            component="nav"
+            aria-label="Footer navigation"
+            spacing={{ xs: 2, md: 3 }}
+            justifyContent="center"
+            flexWrap="wrap"
+            useFlexGap
+          >
+            {views.map((view) => (
+              <Link
+                key={view.name}
+                href={view.to}
+                sx={{
+                  fontSize: { xs: "0.8125rem", md: "0.875rem" },
+                  color: "secondary.main",
+                  "&:hover": { color: "common.white" },
+                }}
+              >
+                {view.name}
+              </Link>
+            ))}
+          </Stack>
+
+          <SocialLinks />
+
+          <Divider
+            flexItem
+            sx={{ borderColor: "rgba(148, 137, 167, 0.14)", width: "100%" }}
+          />
+
+          <CopyRights />
+        </Stack>
+      </Container>
+    </Box>
   );
 }
 export default Footer;

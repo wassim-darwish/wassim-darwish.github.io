@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import React from "react";
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 
 function DownloadPDF() {
   return (
@@ -8,9 +8,18 @@ function DownloadPDF() {
       type="button"
       variant="contained"
       target="_blank"
-      sx={{ fontSize: "0.75rem", color: "white" }}
+      rel="noopener"
+      startIcon={<FileDownloadOutlinedIcon sx={{ fontSize: 16 }} />}
+      sx={{
+        whiteSpace: "nowrap",
+        color: "#fff",
+        // Tighten at md so logo + 7 nav links + this button still fit on a tablet.
+        fontSize: { xs: "0.8125rem", md: "0.75rem", lg: "0.8125rem" },
+        px: { md: 1.5, lg: 2.25 },
+        py: { md: 0.875, lg: 1 },
+      }}
     >
-      Download My CV
+      Download CV
     </Button>
   );
 }

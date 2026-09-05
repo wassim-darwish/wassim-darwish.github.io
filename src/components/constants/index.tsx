@@ -6,144 +6,366 @@ import {
   WealthfaceIcon,
 } from "assets";
 
-export const experiences = [
-  {
-    date: "Feb 2023 - Current",
-    title: "NovelGs",
-    subtitle: "Dubai, United Arab Emirates",
-    technology:
-      "React, React Query, Axios, React Navigation, Formik, Yup, Socket.io, Moment.js, Lodash, MongoDB, NodeJS, ExpressJS, ASP .Net,",
-    description:
-      "Frontend Team Lead / Senior Frontend Developer,. My responsibilities included:",
-    responsibilities: [
-      "Defined and documented website specifications including product features, workflows, and technical requirements.",
-      "Designed site maps, application models, templates, and UI structures aligned with UX standards.",
-      "Developed responsive, high-performance user interfaces using React.",
-      "Built and maintained design systems and reusable component libraries.",
-      "Implemented authentication, authorization, and security best practices.",
-      "Collaborated with product managers, designers, and stakeholders to deliver scalable solutions.",
-      "Led the frontend team by assigning tasks, reviewing code, and mentoring developers.",
-      "Coordinated cross-functional efforts with backend teams for seamless API integration.",
-      "Championed performance optimization and UI/UX consistency across apps.",
-      "Facilitated Agile ceremonies and ensured timely project delivery.",
-    ],
-    icon: (
-      <img
-        src={NovelGsLogo}
-        alt="novel gs"
-        style={{ width: 50, height: 50, borderRadius: "50%" }}
-      />
-    ),
-  },
-  {
-    date: "June 2022 - Jan 2023",
-    title: "Kaskade Finance",
-    subtitle: "Dubai, United Arab Emirates",
-    technology:
-      "Blockchain, Ethers, Smart contract, React, NextJS, React Navigation, Moment.js, Lodash, MongoDB, NodeJS, ExpressJS, Supabase, Edge functions, Postgres, Restfull Api, Defi Lama, Discord applications ",
-    description: "Fullstack developer. My responsibilities included:",
-    responsibilities: [
-      "$Kaskade demo app :",
-      "Fullstack Development:# Designed and implemented both frontend and backend features using Next.js.",
-      "Supabase Integration:# Utilized Supabase edge functions for real-time database operations and serverless computing.",
-      "DeFi Data Handling:# Integrated DeFiLlama API to fetch and display decentralized finance data.",
-      "Authentication:# Implemented secure user authentication and authorization mechanisms.",
-      "Performance Optimization:# Ensured optimal app performance through efficient coding practices and caching strategies.",
-      "Deployment:# Managed deployment processes on Vercel, ensuring smooth and continuous delivery.",
-      "Testing and Debugging:# Conducted thorough testing and debugging to ensure reliability and functionality across all app features.",
-      "$Kaskade Dragon discord bot:",
-      "Bot Development:# Designed and developed the Dragon Discord bot using Node.js and Discord.js.",
-      "Database Management:# Managed and optimized MongoDB for storing user data and bot configurations.",
-      "Wallet Verification Integration:# Integrated the Kaskade demo app for wallet verification functionality within the Discord bot.",
-      "API Integration:# Built and maintained RESTful APIs to facilitate communication between the bot and external services.",
-      "Migration Planning:# Planned and began the process of migrating from MongoDB to Supabase for improved performance and scalability.",
-      "Testing and Debugging:# Conducted thorough testing and debugging to ensure reliability and performance of the bot.",
-      "User Authentication:# Implemented secure user authentication and authorization mechanisms.",
-      "Documentation:# Created comprehensive documentation for bot features, API endpoints, and migration steps.",
-    ],
-    icon: (
-      <img src={KaskadeIcon} alt="novel gs" style={{ width: 40, height: 30 }} />
-    ),
-  },
-  {
-    date: "Aug 2021 - June 2022",
-    title: "SpicyFi GmbH",
-    subtitle: "Switzerland",
-    technology:
-      "Blockchain, Ethers, Smart contract, Solidity, Subgraph, React, NextJS, React Navigation, Formik, Yup, Socket.io, Moment.js, Lodash, MongoDB, NodeJS, ExpressJS",
-    description: "Fullstack developer. My responsibilities included:",
-    responsibilities: [
-      "$CryptoChefs Game Application:",
-      "Developed the frontend# using React and Next.js for a seamless user experience.",
-      "Integrated blockchain functionality with Ethers.js# to handle cryptocurrency transactions and smart contract interactions.",
-      "Implemented responsive and dynamic UI components# to enhance user engagement.",
-      "$Cryptonaire Mobile Quiz App:",
-      "Designed and developed RESTful APIs using Node.js and Express.js# for backend functionality.",
-      "Managed database interactions, user authentication, and session management#.",
-      "Ensured secure# and efficient data handling and implemented real-time features to enhance user experience.",
-      "$CryptochefS & Cryptonaire Landing Pages:",
-      "Developed and implemented# the landing page using React for an engaging user experience.",
-      "Integrated responsive design principles# to ensure compatibility across various devices.",
-      "Ensured cross-browser compatibility# and optimized performance for fast loading times.",
-      "Implemented client-side routing# for seamless navigation between sections.",
-      "Employed best practices in React# for code maintainability and scalability.",
-    ],
-    icon: (
-      <img
-        src={SpicyfiIcon}
-        alt="novel gs"
-        style={{ width: 50, height: 50, borderRadius: "50%" }}
-      />
-    ),
-  },
+export interface Responsibility {
+  /** Optional bolded lead-in, e.g. "Fullstack Development:" */
+  lead?: string;
+  text: string;
+}
 
+export interface ResponsibilityGroup {
+  /** Optional sub-project heading, e.g. "$Kaskade demo app" */
+  group?: string;
+  items: Responsibility[];
+}
+
+export interface ExperienceItem {
+  date: string;
+  title: string;
+  role: string;
+  subtitle: string;
+  technology: string[];
+  description: string;
+  responsibilities: ResponsibilityGroup[];
+  icon: JSX.Element;
+}
+
+const logo = (src: string, alt: string, rounded = true) => (
+  <img
+    src={src}
+    alt={alt}
+    loading="lazy"
+    style={{
+      width: rounded ? 46 : 40,
+      height: rounded ? 46 : 30,
+      objectFit: "contain",
+      borderRadius: rounded ? "50%" : 0,
+    }}
+  />
+);
+
+export const experiences: ExperienceItem[] = [
   {
-    date: "Apr 2019 - Oct 2021",
-    title: "Wealthface L.L.C",
-    subtitle: "Dubai, United Arab Emirates",
-    technology:
-      "React Native, React, Redux, Redux Thunk, Axios, React Navigation, Formik, Yup, Socket.io, Moment.js, Lodash, Figma, MongoDB, NodeJS, ExpressJS",
-    description: "Mobile apps and web developer. My responsibilities included:",
-    responsibilities: [
-      "Developed data architecture design.#",
-      "Built and managed full trading and investing app.",
-      "Worked closely with other team members and clients.#",
-      "Developed and maintained mobile applications for iOS and Android platforms.#",
-      "Designed and implemented responsive web applications.#",
-      "Collaborated with cross-functional teams.#",
-      "Tested and debugged mobile and web applications.#",
-      "Implemented push notifications and data synchronization.#",
-      "Collaborated with product managers and designers to deliver high-quality applications.#",
-      "Participated in Agile development methodologies and ceremonies.#",
+    date: "Feb 2023 — Present",
+    title: "Wellirs",
+    role: "Frontend Team Lead / Senior Frontend Developer",
+    subtitle: "Al-Shareqa, United Arab Emirates",
+    technology: [
+      "React",
+      "TypeScript",
+      "React Query",
+      "Redux",
+      "Design Systems",
+      "Formik & Yup",
+      "Socket.io",
+      "Node.js",
+      "ASP.NET",
+      "MongoDB",
     ],
-    icon: (
-      <img
-        src={WealthfaceIcon}
-        alt="wealthface"
-        style={{ width: 50, height: 50, borderRadius: "50%" }}
-      />
-    ),
+    description:
+      "Leading frontend engineering for oil-industry platforms — from specification and architecture through delivery, review, and performance.",
+    responsibilities: [
+      {
+        group: "Product & Architecture",
+        items: [
+          {
+            lead: "Specification:",
+            text: "Defined and documented website specifications including product features, workflows, and technical requirements.",
+          },
+          {
+            lead: "Architecture:",
+            text: "Designed site maps, application models, templates, and UI structures aligned with project objectives and UX standards.",
+          },
+          {
+            lead: "Design systems:",
+            text: "Built and maintained reusable component libraries to ensure consistency across platforms.",
+          },
+        ],
+      },
+      {
+        group: "Engineering",
+        items: [
+          {
+            lead: "Interfaces:",
+            text: "Developed responsive, high-performance user interfaces using React, tailored for oil industry applications.",
+          },
+          {
+            lead: "Security:",
+            text: "Implemented authentication, authorization, and security best practices for application access.",
+          },
+          {
+            lead: "Performance:",
+            text: "Championed performance optimization, scalability improvements, and UI/UX consistency across applications.",
+          },
+          {
+            lead: "Debugging:",
+            text: "Resolved complex bugs and customer-reported issues with root cause analysis and durable technical fixes.",
+          },
+        ],
+      },
+      {
+        group: "Leadership",
+        items: [
+          {
+            lead: "Team lead:",
+            text: "Led a frontend development team by assigning tasks, reviewing code, and ensuring adherence to best practices.",
+          },
+          {
+            lead: "Mentoring:",
+            text: "Conducted code reviews and technical guidance to improve team performance and code quality.",
+          },
+          {
+            lead: "Collaboration:",
+            text: "Coordinated cross-functional efforts with backend teams to ensure seamless API integration and end-to-end delivery.",
+          },
+          {
+            lead: "Agile:",
+            text: "Facilitated sprint planning, stand-ups, and retrospectives, tracking progress to meet project deadlines.",
+          },
+        ],
+      },
+    ],
+    icon: logo(NovelGsLogo, "Wellirs"),
   },
   {
-    date: "2018 the startup",
-    title: "Freelance Experience",
-    subtitle: "Android Developer",
-    technology: "Java, Android Studio, RESTful APIs, Firebase, SQLite",
-    description:
-      "As a freelance Android developer, I spearheaded the development of a robust e-commerce mobile application using native Java and Android Studio. My responsibilities included:",
-    responsibilities: [
-      "Architecture and Design#",
-      "Core Development#",
-      "API Integration#",
-      "Database Management:# Utilized SQLite for local data storage and Firebase for real-time updates and push notifications.",
-      "Testing and Debugging:# Conducted extensive testing and debugging to ensure a bug-free and smooth user experience.",
+    date: "Jun 2022 — Jan 2023",
+    title: "Kaskade Finance",
+    role: "Fullstack Developer",
+    subtitle: "Dubai, United Arab Emirates",
+    technology: [
+      "React.js",
+      "Next.js",
+      "NestJS",
+      "Node.js",
+      "ethers.js",
+      "Supabase",
+      "PostgreSQL",
+      "Edge Functions",
+      "DefiLlama API",
+      "Discord.js",
     ],
-    icon: (
-      <img
-        src={FreelancerIcon}
-        alt="free lancer"
-        style={{ width: 50, height: 50 }}
-      />
-    ),
+    description:
+      "Full-stack delivery for a DeFi staking and rewards platform — wallet-connected frontends, scalable APIs, and cross-chain data infrastructure.",
+    responsibilities: [
+      {
+        group: "Kaskade demo app",
+        items: [
+          {
+            lead: "Fullstack development:",
+            text: "Designed and implemented both frontend and backend features using Next.js.",
+          },
+          {
+            lead: "Wallet & on-chain data:",
+            text: "Integrated wallet connections and real-time on-chain data into dynamic staking and reward dashboards.",
+          },
+          {
+            lead: "Supabase integration:",
+            text: "Used Supabase edge functions for real-time database operations and serverless computing.",
+          },
+          {
+            lead: "DeFi data handling:",
+            text: "Integrated the DefiLlama API to fetch and display decentralized finance data across chains.",
+          },
+          {
+            lead: "Performance & delivery:",
+            text: "Optimized rendering and caching, and managed continuous deployment on Vercel.",
+          },
+        ],
+      },
+      {
+        group: "Kaskade Dragon Discord bot",
+        items: [
+          {
+            lead: "Bot development:",
+            text: "Designed and built the Dragon Discord bot with Node.js and Discord.js for community engagement and platform notifications.",
+          },
+          {
+            lead: "Wallet verification:",
+            text: "Integrated the Kaskade app to verify user wallets directly inside Discord.",
+          },
+          {
+            lead: "API integration:",
+            text: "Built and maintained RESTful APIs connecting the bot to external services.",
+          },
+          {
+            lead: "Data migration:",
+            text: "Planned and began migrating from MongoDB to Supabase for improved performance and scalability.",
+          },
+          {
+            lead: "Documentation:",
+            text: "Created comprehensive documentation for bot features, API endpoints, and migration steps.",
+          },
+        ],
+      },
+    ],
+    icon: logo(KaskadeIcon, "Kaskade Finance", false),
+  },
+  {
+    date: "Dec 2021 — May 2022",
+    title: "SpicyFi GmbH",
+    role: "React & Node.js Developer",
+    subtitle: "Switzerland",
+    technology: [
+      "React",
+      "Next.js",
+      "Redux",
+      "ethers.js",
+      "web3.js",
+      "Solidity",
+      "Subgraph",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Socket.io",
+    ],
+    description:
+      "Built a full React Web3 game platform and its supporting services, from wallet integration to landing pages.",
+    responsibilities: [
+      {
+        group: "CryptoChefs game platform",
+        items: [
+          {
+            lead: "Frontend:",
+            text: "Developed the game platform with React and Next.js for a seamless user experience.",
+          },
+          {
+            lead: "On-chain integration:",
+            text: "Integrated wallet connection and smart contract interaction via ethers.js/web3.js to handle in-game transactions.",
+          },
+          {
+            lead: "Performance:",
+            text: "Delivered a high-performance SPA with React and Redux, improving speed and usability.",
+          },
+        ],
+      },
+      {
+        group: "Cryptonaire mobile quiz app",
+        items: [
+          {
+            lead: "APIs:",
+            text: "Designed and developed RESTful APIs with Node.js and Express.js.",
+          },
+          {
+            lead: "Data & sessions:",
+            text: "Managed database interactions, user authentication, and session management.",
+          },
+          {
+            lead: "Real-time:",
+            text: "Implemented secure, efficient data handling with real-time features for live gameplay.",
+          },
+        ],
+      },
+      {
+        group: "Landing pages & platform work",
+        items: [
+          {
+            lead: "Responsive delivery:",
+            text: "Built the CryptoChefs and Cryptonaire landing pages in React with responsive design across devices.",
+          },
+          {
+            lead: "Compatibility:",
+            text: "Ensured cross-browser compatibility and optimized load times.",
+          },
+          {
+            lead: "Code quality:",
+            text: "Conducted code reviews and pair programming, applying React best practices for maintainability.",
+          },
+        ],
+      },
+    ],
+    icon: logo(SpicyfiIcon, "SpicyFi GmbH"),
+  },
+  {
+    date: "Apr 2020 — Dec 2021",
+    title: "Wealthface L.L.C.",
+    role: "Mobile Apps & Web Developer",
+    subtitle: "Dubai, United Arab Emirates",
+    technology: [
+      "React Native",
+      "React",
+      "Redux",
+      "Redux Thunk",
+      "Axios",
+      "React Navigation",
+      "Formik & Yup",
+      "Socket.io",
+      "Node.js",
+      "MongoDB",
+      "Figma",
+    ],
+    description:
+      "Built and shipped a React Native trading and investment app from concept to deployment, alongside the company's web presence.",
+    responsibilities: [
+      {
+        items: [
+          {
+            lead: "Trading app:",
+            text: "Built and managed a React Native trading & investment app from concept to store deployment.",
+          },
+          {
+            lead: "Data architecture:",
+            text: "Designed and implemented data architectures supporting targeted customer analytics.",
+          },
+          {
+            lead: "Mobile:",
+            text: "Developed and maintained iOS & Android apps, including push notifications and real-time data synchronization.",
+          },
+          {
+            lead: "Web:",
+            text: "Led website development from initial design to completion with clean, scalable code.",
+          },
+          {
+            lead: "Integrations:",
+            text: "Integrated RESTful APIs and third-party services into mobile and web platforms.",
+          },
+          {
+            lead: "Quality:",
+            text: "Conducted testing, debugging, and optimization for performance, scalability, and security.",
+          },
+          {
+            lead: "Client enablement:",
+            text: "Provided client training on managing website and mobile app CMS tools.",
+          },
+        ],
+      },
+    ],
+    icon: logo(WealthfaceIcon, "Wealthface"),
+  },
+  {
+    date: "2018 — 2020",
+    title: "Freelance",
+    role: "Android Developer",
+    subtitle: "Remote",
+    technology: [
+      "Java",
+      "Android Studio",
+      "RESTful APIs",
+      "Firebase",
+      "SQLite",
+    ],
+    description:
+      "Led development of a native Android e-commerce application end to end.",
+    responsibilities: [
+      {
+        items: [
+          {
+            lead: "Architecture & design:",
+            text: "Defined the app architecture and screen flows in native Java.",
+          },
+          {
+            lead: "Core development:",
+            text: "Implemented catalogue, cart, and checkout features against RESTful APIs.",
+          },
+          {
+            lead: "Data management:",
+            text: "Used SQLite for local storage and Firebase for real-time updates and push notifications.",
+          },
+          {
+            lead: "Testing:",
+            text: "Conducted extensive testing and debugging for a smooth, stable user experience.",
+          },
+        ],
+      },
+    ],
+    icon: logo(FreelancerIcon, "Freelance", false),
   },
 ];

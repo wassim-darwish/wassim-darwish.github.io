@@ -1,46 +1,27 @@
-.App {
-  text-align: center;
+/* Vertical timeline theming — the library ships light-mode defaults. */
+.vertical-timeline::before {
+  background: linear-gradient(
+    180deg,
+    rgba(100, 43, 115, 0.15),
+    rgba(198, 66, 110, 0.65),
+    rgba(100, 43, 115, 0.15)
+  );
+  width: 2px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.vertical-timeline-element-content {
+  border-radius: 1rem !important;
+  box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.9) !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.vertical-timeline-element-date {
+  color: #9489a7;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.875rem !important;
+  opacity: 1 !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.background-image-left {
-  top: 28%;
-  /* position: absolute; */
-  bottom: 0;
-  width: 40%;
-  z-index: -4;
+.vertical-timeline-element-icon {
+  box-shadow: 0 0 0 3px rgba(198, 66, 110, 0.35),
+    inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05) !important;
 }

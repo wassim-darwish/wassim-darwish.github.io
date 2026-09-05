@@ -1,91 +1,96 @@
-import {
-  Box,
-  Grid,
-  Typography,
-  Card,
-  CardContent,
-  useMediaQuery,
-  Zoom,
-} from "@mui/material";
-import { theme } from "utils/theme";
-import useOnScreen from "hooks/useOnScreen";
-import { useRef } from "react";
+import { Card, CardContent, Grid, Link, Stack, Typography } from "@mui/material";
+import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
 import { MyCV } from "components/constants/cv";
+import Section from "components/common/Section";
+import Reveal from "components/common/Reveal";
+import LanguagesSection from "components/LanguageSection/LanguageSection";
+import SoftSkillsSection from "components/SoftSkillsSection/SoftSkillsSection";
+
+const year = (date: string) => new Date(date).getFullYear();
 
 const EducationSection = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(ref);
-  const mobile = useMediaQuery(theme.breakpoints.down("md"));
-
   return (
-    <Box ref={ref} id="education" sx={{ mt: 10, mb: 8 }}>
-      <Zoom in={isVisible} timeout={800}>
-        <Box>
-          <Typography
-            variant="h2"
-            textAlign="center"
-            color="primary"
-            fontWeight={600}
-            mb={4}
-            fontSize={{ xs: "8vw", md: "3vw" }}
-          >
-            Education
-          </Typography>
-
-          <Grid
-            container
-            spacing={3}
-            justifyContent="center"
-            px={{ xs: 2, md: 6 }}
-          >
-            {MyCV.education.map((edu, index) => (
-              <Grid item xs={12} md={6} key={index}>
-                <Card
-                  elevation={3}
-                  sx={{
-                    borderRadius: 4,
-                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                    "&:hover": {
-                      transform: "translateY(-4px)",
-                      boxShadow: "0 6px 12px rgba(0,0,0,0.15)",
-                    },
-                  }}
-                >
-                  <CardContent>
-                    <Typography variant="h6" fontWeight={600}>
-                      {edu.degree}
-                    </Typography>
-                    <Typography color="text.secondary">
-                      {edu.institution}
-                    </Typography>
-                    <Typography variant="body2" mt={1}>
-                      {edu.location}
-                    </Typography>
-                    <Typography variant="body2" mt={0.5}>
-                      {new Date(edu.start_date).getFullYear()} –{" "}
-                      {new Date(edu.end_date).getFullYear()}
-                    </Typography>
-                    {edu.website && (
-                      <Typography
-                        variant="body2"
-                        mt={1}
-                        color="primary"
-                        component="a"
-                        href={edu.website}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Visit Website
+    <Section
+      id="education"
+      eyebrow="Background"
+      title="Education & Strengths"
+      subtitle="Formal grounding in information technology and telecommunications, plus the languages and working habits I bring to a team."
+    >
+      <Grid container spacing={{ xs: 2.5, md: 3 }} alignItems="stretch">
+        {MyCV.education.map((edu, index) => (
+          <Grid item xs={12} md={6} key={edu.degree}>
+            <Reveal delay={index * 80} sx={{ height: "100%" }}>
+              <Card
+                elevation={0}
+                sx={{
+                  height: "100%",
+                  transition:
+                    "transform 350ms cubic-bezier(0.22, 1, 0.36, 1), border-color 350ms ease",
+                  "&:hover": {
+                    transform: "translateY(-6px)",
+                    borderColor: "rgba(198, 66, 110, 0.55)",
+                  },
+                }}
+              >
+                <CardContent sx={{ p: { xs: 2.5, md: 3 } }}>
+                  <Stack direction="row" spacing={2} alignItems="flex-start">
+                    <SchoolOutlinedIcon
+                      sx={{ color: "#C6426E", fontSize: "1.75rem", mt: 0.25 }}
+                    />
+                    <Stack spacing={0.75}>
+                      <Typography variant="h4" component="h3">
+                        {edu.degree}
                       </Typography>
-                    )}
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
+                      <Typography
+                        variant="h6"
+                        color="secondary.main"
+                        sx={{ fontFamily: "Outfit" }}
+                      >
+                        {edu.institution}
+                      </Typography>
+                      <Typography
+                        variant="subtitle2"
+                        color="secondary.main"
+                        sx={{ fontFamily: "Outfit" }}
+                      >
+                        {edu.location} · {year(edu.start_date)} –{" "}
+                        {year(edu.end_date)}
+                      </Typography>
+                      {edu.website && (
+                        <Link
+                          href={edu.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          sx={{
+                            fontSize: "0.8125rem",
+                            width: "fit-content",
+                            color: "#C6426E",
+                            "&:hover": { color: "#fff" },
+                          }}
+                        >
+                          Visit website →
+                        </Link>
+                      )}
+                    </Stack>
+                  </Stack>
+                </CardContent>
+              </Card>
+            </Reveal>
           </Grid>
-        </Box>
-      </Zoom>
-    </Box>
+        ))}
+
+        <Grid item xs={12} md={7}>
+          <Reveal delay={160} sx={{ height: "100%" }}>
+            <LanguagesSection />
+          </Reveal>
+        </Grid>
+        <Grid item xs={12} md={5}>
+          <Reveal delay={220} sx={{ height: "100%" }}>
+            <SoftSkillsSection />
+          </Reveal>
+        </Grid>
+      </Grid>
+    </Section>
   );
 };
 

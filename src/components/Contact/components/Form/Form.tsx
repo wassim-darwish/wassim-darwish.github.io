@@ -1,18 +1,15 @@
 /* eslint-disable no-console */
 import {
   Alert,
+  Box,
   Button,
   CircularProgress,
   Grid,
   Snackbar,
-  Stack,
-  Typography,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import Input from "../Input/Input";
 import { useFormData } from "./hooks";
-import SectionHeader from "components/common/SectionHeader/SectionHeader";
-import { contactText } from "./constants";
 import { theme } from "utils/theme";
 
 export default function Form() {
@@ -22,6 +19,7 @@ export default function Form() {
     sendingMessage,
     values,
     errors,
+    disabled,
     handleClose,
     onSubmitHandler,
     onChangeHandler,
@@ -29,104 +27,93 @@ export default function Form() {
 
   return (
     <>
-      <form onSubmit={onSubmitHandler}>
-        <Grid container flexDirection="column" rowGap={4}>
+      <Box
+        component="form"
+        onSubmit={onSubmitHandler}
+        sx={{
+          width: "100%",
+          p: { xs: 2.5, sm: 3, md: 4 },
+          borderRadius: "1.25rem",
+          border: "1px solid rgba(148, 137, 167, 0.16)",
+          backgroundColor: "rgba(24, 20, 32, 0.72)",
+          backdropFilter: "blur(8px)",
+        }}
+      >
+        <Grid container spacing={2.5}>
+          <Grid item xs={12} sm={6}>
+            <Input
+              value={values.name}
+              onChange={onChangeHandler}
+              id="name"
+              name="name"
+              type="text"
+              fieldLabel="Name"
+              placeholder="Your name"
+              helperText={errors.name}
+              error={!!errors.name}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Input
+              value={values.email}
+              onChange={onChangeHandler}
+              id="email"
+              name="email"
+              type="email"
+              fieldLabel="Email address"
+              placeholder="you@company.com"
+              helperText={errors.email}
+              error={!!errors.email}
+            />
+          </Grid>
           <Grid item xs={12}>
-            <Stack width={{ md: "35vw" }}>
-              <SectionHeader
-                title={contactText.title}
-                subtitle={contactText.subtitle}
-                content={contactText.content}
-              />
-            </Stack>
+            <Input
+              value={values.message}
+              onChange={onChangeHandler}
+              id="message"
+              name="message"
+              type="text"
+              fieldLabel="Message"
+              placeholder="Tell me about your project..."
+              helperText={errors.message}
+              error={!!errors.message}
+              multiline
+              minRows={4}
+              maxRows={8}
+            />
           </Grid>
-          <Grid container item xs={12}>
-            <Grid
-              container
-              item
-              xs={12}
-              justifyContent="space-between"
-              my={2}
-              rowGap={2}
-            >
-              <Grid item xs={12} sm={5.8}>
-                <Input
-                  value={values.name}
-                  onChange={onChangeHandler}
-                  id="name"
-                  name="name"
-                  type="text"
-                  fieldLabel="Name"
-                  placeholder="Type your name.."
-                  size="medium"
-                  helperText={errors.name}
-                  error={!!errors.name}
-                />
-              </Grid>
-              <Grid item xs={12} sm={5.8}>
-                <Input
-                  value={values.email}
-                  onChange={onChangeHandler}
-                  id="email"
-                  name="email"
-                  type="email"
-                  fieldLabel="Email address"
-                  placeholder="Type your your email.."
-                  helperText={errors.email}
-                  error={!!errors.email}
-                />
-              </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <Input
-                value={values.message}
-                onChange={onChangeHandler}
-                id="message"
-                name="message"
-                type="text"
-                fieldLabel="Message"
-                placeholder="Type your message.."
-                helperText={errors.message}
-                error={!!errors.message}
-                multiline
-                minRows={3}
-                maxRows={6}
-              />
-            </Grid>
-          </Grid>
-
-          <Grid item maxWidth="170px">
+          <Grid item xs={12}>
             <Button
               variant="contained"
               size="large"
               type="submit"
-              sx={{ textTransform: "none", color: "#fff" }}
+              disabled={disabled}
+              endIcon={
+                sendingMessage ? (
+                  <CircularProgress size={16} thickness={4} color="inherit" />
+                ) : (
+                  <SendIcon
+                    sx={{ fontSize: 16, transform: "rotate(-30deg)" }}
+                  />
+                )
+              }
+              sx={{
+                textTransform: "none",
+                color: "#fff",
+                width: { xs: "100%", sm: "auto" },
+                "&.Mui-disabled": {
+                  background: "rgba(148, 137, 167, 0.18)",
+                  color: "rgba(255,255,255,0.45)",
+                  boxShadow: "none",
+                },
+              }}
             >
-              <Typography
-                noWrap
-                variant="subtitle2"
-                mr={1}
-                color="inherit"
-                sx={{ cursor: "inherit" }}
-              >
-                Send Message
-              </Typography>
-              {sendingMessage ? (
-                <CircularProgress size={20} thickness={2} />
-              ) : (
-                <SendIcon
-                  sx={{
-                    fontSize: "16px",
-                    mt: -1,
-                    transform: "rotate(-30deg)",
-                    color: "#fff",
-                  }}
-                />
-              )}
+              {sendingMessage ? "Sending..." : "Send message"}
             </Button>
           </Grid>
         </Grid>
-      </form>
+      </Box>
+
       <Snackbar
         open={openSnackbar}
         autoHideDuration={6000}
@@ -143,8 +130,8 @@ export default function Form() {
           }}
         >
           {messageSuccess
-            ? "Message had been sent successfully."
-            : "Something went wrong, and we are working on."}
+            ? "Your message has been sent — I'll get back to you shortly."
+            : "Something went wrong. Please try again or email me directly."}
         </Alert>
       </Snackbar>
     </>

@@ -1,73 +1,88 @@
-import { Box, Grid, Typography, Card, CardContent, Zoom } from "@mui/material";
-import useOnScreen from "hooks/useOnScreen";
-import { useRef } from "react";
+import { Box, Card, CardContent, Stack, Typography } from "@mui/material";
 import { MyCV } from "components/constants/cv";
+import { GradientText } from "components/GradientText";
 
+/**
+ * Language proficiency block. Rendered inside the Education section rather than
+ * as a standalone section, so the "background" content reads as one unit.
+ */
 const LanguagesSection = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(ref);
-
-  const languages = MyCV.languages;
-
   return (
-    <Box ref={ref} id="languages" sx={{ mt: 10, mb: 8 }}>
-      <Zoom in={isVisible} timeout={800}>
-        <Box>
-          <Typography
-            variant="h2"
-            textAlign="center"
-            color="primary"
-            fontWeight={600}
-            mb={4}
-            fontSize={{ xs: "8vw", md: "3vw" }}
-          >
-            Languages
-          </Typography>
-
-          <Grid
-            container
-            justifyContent="center"
-            spacing={3}
-            px={{ xs: 2, md: 6 }}
-          >
-            {Object.entries(languages).map(([lang, value]) => (
-              <Grid item xs={12} md={4} key={lang}>
-                <Card
-                  elevation={3}
-                  sx={{
-                    borderRadius: 4,
-                    textAlign: "center",
-                    transition: "all 0.3s ease",
-                    "&:hover": { boxShadow: "0 6px 12px rgba(0,0,0,0.15)" },
-                  }}
+    <Card elevation={0} sx={{ height: "100%" }}>
+      <CardContent sx={{ p: { xs: 2.5, md: 3 } }}>
+        <GradientText
+          text="Languages"
+          component="h3"
+          fontSize={{ xs: "1.125rem", md: "1.25rem" }}
+          fontWeight={600}
+        />
+        <Stack spacing={2.5} mt={2}>
+          {MyCV.languages.map((language) => (
+            <Box key={language.name}>
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="baseline"
+                flexWrap="wrap"
+                gap={1}
+              >
+                <Typography variant="h6" sx={{ fontFamily: "Outfit" }}>
+                  {language.name}
+                </Typography>
+                <Typography
+                  variant="subtitle2"
+                  color="secondary.main"
+                  sx={{ fontFamily: "Outfit" }}
                 >
-                  <CardContent>
-                    <Typography variant="h6" fontWeight={600}>
-                      {lang}
+                  {language.level}
+                </Typography>
+              </Stack>
+              {language.detail.length > 0 && (
+              <Box
+                sx={{
+                  display: "grid",
+                  gridTemplateColumns: {
+                    xs: "1fr",
+                    sm: "repeat(2, minmax(0, 1fr))",
+                  },
+                  gap: 0.75,
+                  mt: 1.25,
+                }}
+              >
+                {language.detail.map((entry) => (
+                  <Stack
+                    key={entry.skill}
+                    direction="row"
+                    justifyContent="space-between"
+                    sx={{
+                      px: 1.25,
+                      py: 0.75,
+                      borderRadius: "0.5rem",
+                      backgroundColor: "rgba(148, 137, 167, 0.08)",
+                    }}
+                  >
+                    <Typography
+                      variant="subtitle2"
+                      color="secondary.main"
+                      sx={{ fontFamily: "Outfit" }}
+                    >
+                      {entry.skill}
                     </Typography>
-                    {typeof value === "string" ? (
-                      <Typography variant="body2" color="text.secondary">
-                        {value}
-                      </Typography>
-                    ) : (
-                      Object.entries(value).map(([skill, level]) => (
-                        <Typography
-                          key={skill}
-                          variant="body2"
-                          color="text.secondary"
-                        >
-                          {skill.replaceAll("_", " ")}: {level}
-                        </Typography>
-                      ))
-                    )}
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-      </Zoom>
-    </Box>
+                    <Typography
+                      variant="subtitle2"
+                      sx={{ fontFamily: "Outfit", fontWeight: 600 }}
+                    >
+                      {entry.level}
+                    </Typography>
+                  </Stack>
+                ))}
+              </Box>
+              )}
+            </Box>
+          ))}
+        </Stack>
+      </CardContent>
+    </Card>
   );
 };
 
