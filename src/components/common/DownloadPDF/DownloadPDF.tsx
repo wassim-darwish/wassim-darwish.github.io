@@ -4,7 +4,7 @@ import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 function DownloadPDF() {
   return (
     <Button
-      href={require("./WassimDarwish _CV.pdf")}
+      href={require("./Wassim_Darwish_CV.pdf")}
       type="button"
       variant="contained"
       target="_blank"
