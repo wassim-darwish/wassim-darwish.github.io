@@ -1,5 +1,5 @@
 import { Box, Container, Divider, Link, Stack } from "@mui/material";
-import { CopyRights, Logo, SocialLinks } from "./components";
+import { CopyRights, Logo, SocialLinks, VisitorCount } from "./components";
 import { footerBackground } from "assets";
 import { views } from "components/Navbar";
 
@@ -51,7 +51,10 @@ function Footer() {
             sx={{ borderColor: "rgba(148, 137, 167, 0.14)", width: "100%" }}
           />
 
-          <CopyRights />
+          <Stack spacing={1.25} alignItems="center">
+            <CopyRights />
+            <VisitorCount />
+          </Stack>
         </Stack>
       </Container>
     </Box>
