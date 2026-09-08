@@ -24,14 +24,14 @@ export const Banner = () => {
       "Web3 Engineer",
       "Mobile App Developer",
     ],
-    []
+    [],
   );
 
   // Respect the OS "reduce motion" setting: show a static role instead of typing.
   const prefersReducedMotion = useRef(
     typeof window !== "undefined" &&
       typeof window.matchMedia === "function" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   ).current;
 
   const tick = useCallback(() => {
@@ -102,7 +102,12 @@ export const Banner = () => {
                 <GradientText
                   text="Hey, I'm Wassim"
                   component="h1"
-                  fontSize={{ xs: "2.25rem", sm: "3rem", md: "3.25rem", lg: "4rem" }}
+                  fontSize={{
+                    xs: "2.25rem",
+                    sm: "3rem",
+                    md: "3.25rem",
+                    lg: "4rem",
+                  }}
                   fontWeight={600}
                   lineHeight={1.1}
                 />
@@ -110,13 +115,14 @@ export const Banner = () => {
 
               <Reveal delay={140}>
                 <Typography
-                  variant="h2"
+                  variant="h3"
                   component="p"
                   sx={{
                     minHeight: { xs: "4.5rem", md: "5rem" },
                     // Block, not flex: the caret must follow the last character
                     // even when the role name wraps to a second line.
                     display: "block",
+                    fontSize: { xs: "2rem", md: "2.8rem" },
                   }}
                 >
                   {text}
